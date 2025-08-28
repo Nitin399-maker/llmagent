@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM Agent</title>
+   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTUiIGZpbGw9IiMyNTYzZWIiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJtMTYgNyAyIDcgNyAyLTcgMi0yIDctMi03LTctMiA3LTJaIi8+PC9zdmc+" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    .message { margin-bottom: 1rem; color: black; }
+    .user-message { background-color: #e3f2fd; }
+    .agent-message { background-color: #f3e5f5; }
+    .tool-message { background-color: #fff3e0; }
+    .error-message { background-color: #ffebee; }
+    .thinking { opacity: 0.7; font-style: italic; }
+    #chat-container { height: 400px; overflow-y: auto; }
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center">
+    <h1 class="mb-2"> <i class="bi bi-robot ms-2 text-primary"></i> LLM Agent</h1>
+      <div class="position-relative ms-md-2" role="group" aria-label="Toggle dark mode" title="Toggle Dark Mode">
+        <button class="dark-theme-toggle btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Open navigation menu">
+          <i class="bi bi-circle-half"></i> <span class="d-lg-none ms-2">Toggle theme</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><button class="dropdown-item" data-bs-theme-value="light"><i class="me-2 bi bi-sun-fill"></i> Light</button></li>
+          <li><button class="dropdown-item" data-bs-theme-value="dark"><i class="me-2 bi bi-moon-stars-fill"></i> Dark</button></li>
+          <li><button class="dropdown-item" data-bs-theme-value="auto"><i class="me-2 bi bi-circle-half"></i> Auto</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <h5 class="mb-0">Chat</h5>
+              <div class="d-flex gap-2 align-items-center">
+                <select id="model-select" class="form-select form-select-sm" style="width: auto;" disabled>
+                  <option value="">Select Model...</option>
+                </select>
+                <button id="configure-btn" class="btn btn-sm btn-outline-primary">
+                  <i class="bi bi-gear"></i> Configure LLM
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div id="chat-container" class="border rounded p-3 mb-3">
+            </div>
+            <div class="input-group">
+              <input type="text" id="user-input" class="form-control" placeholder="Type your message..." disabled>
+              <button id="send-btn" class="btn btn-primary" disabled>
+                <i class="bi bi-send"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <h6>Tools Available</h6>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled">
+              <li><i class="bi bi-search"></i> Google Search</li>
+              <li><i class="bi bi-code-square"></i> JavaScript Execution</li>
+              <li><i class="bi bi-robot"></i> AI Pipe Proxy API</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card mt-3">
+          <div class="card-header">
+            <h6>Example Questions</h6>
+          </div>
+          <div class="card-body">
+            <div class="list-group list-group-flush">
+              <button class="list-group-item list-group-item-action example-question">Interview me to create a blog post</button>
+              <button class="list-group-item list-group-item-action example-question">Search for recent AI news and summarize</button>
+              <button class="list-group-item list-group-item-action example-question">Calculate the Fibonacci sequence up to 100</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@gramex/ui@0.3.1/dist/dark-theme.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="script.js"> </script>
+</body>
+</html>
