@@ -28,7 +28,7 @@ const saveGoogleCredentials = () => {
 const updateGoogleStatus = () => {
     const credentials = JSON.parse(localStorage.getItem('googleSearchCredentials') || '{}');
     const isConfigured = credentials.apiKey && credentials.cseId;
-    googleStatus.textContent = isConfigured ? ' ✓ Configured' : 'Not configured';
+    googleStatus.textContent = isConfigured ? ' ( ✓ Configured )' : '( Not configured)';
     googleStatus.className = `config-status text-${isConfigured ? 'success' : 'muted'}`;
 };
 
